@@ -31,7 +31,7 @@ export function Map({
       const { offsetX, offsetY } = e.nativeEvent;
       const newCoords = {
         x: offsetX,
-        y: offsetY - 100,
+        y: offsetY - 50,
       };
       setMarkCoordinates(newCoords);
       onChange(newCoords);
@@ -50,7 +50,7 @@ export function Map({
         src={getMapImg(mapName)}
         alt={mapName}
         onClick={mapMark}
-        clickable={!!onChange}
+
       />
       {(markCoordinates.x !== -1 || markCoordinates.y !== -1) && (
         <MapMark x={markCoordinates.x} y={markCoordinates.y} />

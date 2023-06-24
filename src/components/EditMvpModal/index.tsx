@@ -26,18 +26,17 @@ import {
   ConfirmButton,
 } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { addKilledMvp, getKilledMvp, getTimezone } from '../../features/mvp/mvpSlice';
+import { addKilledMvp, getKilledMvp } from '../../features/mvp/mvpSlice';
 import { setModal } from '../../features/settings/settingsSlice';
 
 export function EditMvpModal() {
   useScrollBlock(true);
 
   const mvp = useSelector(getKilledMvp);
-  const timeZone = useSelector(getTimezone)
   const dispatch = useDispatch();
   const [newTime, setNewTime] = useState<Date | null>(moment().subtract(8, 'hours').toDate());
-  const [isServerTime, setIsServerTime] = useState(timeZone === "server" ? true : false);
-
+  const [isServerTime, setIsServerTime] = useState(mvp.timeZone === "server" ? true : false);
+  console.log(mvp);
   useEffect(() => {
     if (isServerTime) {
       const serverTime = moment().subtract(8, 'hours').toDate();
@@ -46,7 +45,7 @@ export function EditMvpModal() {
       setNewTime(moment().toDate());
     }
   }, [isServerTime]);
-  const [selectedMap, setSelectedMap] = useState<string>(mvp.deathMap || '');
+  const [selectedMap, setSelectedMap] = useState<string>(mvp.spawn.find((spawn) => ![...mvp.activeMaps.map(map => map)].includes(spawn.mapname))?.mapname || '');
   const [markCoordinates, setMarkCoordinates] = useState<IMapMark>({
     x: -1,
     y: -1,
@@ -71,6 +70,7 @@ export function EditMvpModal() {
     const updatedMvp: Mvp = {
       ...mvp,
       deathMap: selectedMap,
+      activeMaps: [...mvp.activeMaps, selectedMap],
       deathPosition: markCoordinates,
       deathTime: moment(updatedTime || new Date()).format('YYYY-MM-DD HH:mm:ss')
     };
@@ -127,24 +127,22 @@ export function EditMvpModal() {
               value={selectedMap}
               onChange={(e) => setSelectedMap(e.target.value)}
             >
-              {hasMoreThanOneMap ? (
-                <>
-                  {!selectedMap && (
-                    <SelectMapOption disabled value=''>
-                      Select the map
-                    </SelectMapOption>
-                  )}
 
-                  {mvp.spawn.map((map) => (
-                    <SelectMapOption key={map.mapname} value={map.mapname}>
-                      {map.mapname} -{' '}
-                      {moment.duration(map.respawnTime).asHours()}h
-                    </SelectMapOption>
-                  ))}
-                </>
-              ) : (
-                <SelectMapOption>{mvp.spawn[0].mapname}</SelectMapOption>
-              )}
+              <>
+                {!selectedMap && (
+                  <SelectMapOption disabled value=''>
+                    Select the map
+                  </SelectMapOption>
+                )}
+
+                {mvp.spawn.filter((spawn) => ![...mvp.activeMaps.map(map => map)].includes(spawn.mapname)).map((map) => (
+                  <SelectMapOption key={map.mapname} value={map.mapname}>
+                    {map.mapname} -{' '}
+                    {moment.duration(map.respawnTime).asHours()}h
+                  </SelectMapOption>
+                ))}
+              </>
+
             </SelectMap>
           </>
         )}

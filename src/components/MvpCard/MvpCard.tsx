@@ -1,17 +1,12 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Map, RefreshCcw, Trash2, Edit2 } from '@styled-icons/feather';
 
 import moment from 'moment';
 
 import { MvpSprite } from '../MvpSprite';
-/* import { MvpMapModal } from '../MvpMapModal';
-import { MvpCardCountdown } from '../MvpCardCountdown';
- */
+
 import { Mvp } from '../../interfaces';
-/* import { MvpsContext } from '../../contexts/MvpsContext';
-import { SettingsContext } from '../../contexts/SettingsContext';
-import { getMvpRespawnTime, respawnAt } from '../../utils';
- */
+
 import {
     Container,
     Name,
@@ -25,7 +20,7 @@ import {
     SumMvpBtn
 } from './styles';
 import { useDispatch } from 'react-redux';
-import { addKilledMvp, removeActiveMvp, setEditingMvp } from '../../features/mvp/mvpSlice';
+import { addLocalKilledMvpCount, removeActiveMvp, setEditingMvp } from '../../features/mvp/mvpSlice';
 import { setModal } from '../../features/settings/settingsSlice';
 import { MvpCardCountdown } from '../MvpCardCountdown';
 import { getMvpRespawnTime, respawnAt } from '../../utils';
@@ -45,26 +40,39 @@ export const MvpCard = React.memo(
         );
         const respawnTime = useMemo(() => respawnAt(nextRespawn), [nextRespawn]);
         const dispatch = useDispatch();
-        const [isMapModalOpen, setIsMapModalOpen] = useState<boolean>(false);
+
         const [killedTimes, setKilledTimes] = useState<number>(killed);
 
-        const hasMoreThanOneMap = useMemo(
-            () => mvp.spawn.length > 1,
-            [mvp.spawn.length]
-        );
 
         const addKill = () => {
             setKilledTimes(killedTimes + 1);
             // sumMvpItem(mvp.id)
+            addLocalKilledMvpCount(mvp)
         }
 
         const handleKilledNow = () => {
-            //dispatch(addKilledMvp(mvp))
+            mvp = { ...mvp, timezone: "local" }
+            dispatch(setEditingMvp(mvp))
+            setIsMapModalOpen()
+
+        }
+        const handleKilledOther = () => {
+            mvp = { ...mvp, timezone: "server" }
+            dispatch(setEditingMvp(mvp))
+            setIsMapModalOpen()
+        }
+        const handleRemoveActiveMvp = () => {
+            console.log(mvp, "---");
+            mvp.activeMaps = [...mvp.activeMaps.filter(map => map !== mvp.deathMap)]
+            dispatch(removeActiveMvp(mvp))
+        }
+
+        const setIsMapModalOpen = () => {
             dispatch(setEditingMvp(mvp))
             dispatch(setModal())
         }
-        const handleRemoveActiveMvp = () => {
-            dispatch(removeActiveMvp(mvp))
+        const test = () => {
+            console.log(mvp);
         }
         return (
             <>
@@ -91,7 +99,7 @@ export const MvpCard = React.memo(
                             </MapName>
 
                             <Controls>
-                                <Control style={{ backgroundColor: "#00a8ff" }} onClick={() => setIsMapModalOpen(true)} title='Show map'>
+                                <Control style={{ backgroundColor: "#00a8ff" }} onClick={() => setIsMapModalOpen()} title='Show map'>
                                     <Map />
                                 </Control>
                                 <Control
@@ -103,7 +111,7 @@ export const MvpCard = React.memo(
                                 </Control>
                                 <Control
                                     style={{ backgroundColor: "#3F51B5" }}
-                                /* onClick={() => resetMvpTimer(mvp)} */ title='Reset timer'>
+                                    onClick={test} title='Reset timer'>
                                     <RefreshCcw />
                                 </Control>
                                 <Control
@@ -119,7 +127,7 @@ export const MvpCard = React.memo(
                             <KilledNow onClick={handleKilledNow}>
                                 Killed Now
                             </KilledNow>
-                            <EditButton /* onClick={handleKilledOther} */>
+                            <EditButton onClick={handleKilledOther}>
                                 Add Respawn
                             </EditButton>
                         </Controls>

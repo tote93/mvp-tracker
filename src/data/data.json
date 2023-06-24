@@ -3,6 +3,8 @@
     "id": 1087,
     "dbname": "ORK_HERO",
     "name": "Orc Hero",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "gef_fild02",
@@ -24,6 +26,8 @@
     "id": 1147,
     "dbname": "MAYA",
     "name": "Maya",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "anthell02",
@@ -41,6 +45,8 @@
     "id": 1190,
     "dbname": "ORC_LORD",
     "name": "Orc Lord",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "gef_fild10",
@@ -58,6 +64,8 @@
     "id": 1086,
     "dbname": "GOLDEN_BUG",
     "name": "Golden Thief Bug",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "prt_sewb4",
@@ -75,6 +83,8 @@
     "id": 1115,
     "dbname": "EDDGA",
     "name": "Eddga",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "pay_fild10",
@@ -92,6 +102,8 @@
     "id": 1038,
     "dbname": "OSIRIS",
     "name": "Osiris",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "moc_pryd04",
@@ -109,6 +121,8 @@
     "id": 1511,
     "dbname": "AMON_RA",
     "name": "Amon Ra",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "moc_pryd06",
@@ -126,6 +140,8 @@
     "id": 1159,
     "dbname": "PHREEONI",
     "name": "Phreeoni",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "moc_fild17",
@@ -143,6 +159,8 @@
     "id": 1389,
     "dbname": "DRACULA",
     "name": "Dracula",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "gef_dun01",
@@ -160,6 +178,8 @@
     "id": 1046,
     "dbname": "DOPPELGANGER",
     "name": "Doppelganger",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "gef_dun02",
@@ -177,6 +197,8 @@
     "id": 1059,
     "dbname": "MISTRESS",
     "name": "Mistress",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "mjolnir_04",
@@ -194,6 +216,8 @@
     "id": 1150,
     "dbname": "MOONLIGHT",
     "name": "Moonlight Flower",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "pay_dun04",
@@ -211,6 +235,8 @@
     "id": 1688,
     "dbname": "LADY_TANEE",
     "name": "Lady Tanee",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "ayo_dun02",
@@ -228,6 +254,8 @@
     "id": 1039,
     "dbname": "BAPHOMET",
     "name": "Baphomet",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "prt_maze03",
@@ -245,6 +273,8 @@
     "id": 1157,
     "dbname": "PHARAOH",
     "name": "Pharaoh",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "in_sphinx5",
@@ -262,6 +292,8 @@
     "id": 1112,
     "dbname": "DRAKE",
     "name": "Drake",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "treasure02",
@@ -279,6 +311,8 @@
     "id": 1251,
     "dbname": "KNIGHT_OF_WINDSTORM",
     "name": "Stormy Knight",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "xmas_dun02",
@@ -296,6 +330,8 @@
     "id": 2068,
     "dbname": "BOITATA",
     "name": "Boitata",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "bra_dun02",
@@ -313,6 +349,8 @@
     "id": 1373,
     "dbname": "LORD_OF_DEATH",
     "name": "Lord of the Dead",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "niflheim",
@@ -330,6 +368,8 @@
     "id": 2156,
     "dbname": "LEAK",
     "name": "Leak",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "dew_dun01",
@@ -347,6 +387,8 @@
     "id": 1272,
     "dbname": "DARK_LORD",
     "name": "Dark Lord",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "gl_chyard_",
@@ -364,6 +406,8 @@
     "id": 1630,
     "dbname": "BACSOJIN_",
     "name": "White Lady",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "lou_dun03",
@@ -381,6 +425,8 @@
     "id": 1885,
     "dbname": "GOPINICH",
     "name": "Gopinich",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "mosk_dun03",
@@ -398,6 +444,8 @@
     "id": 1252,
     "dbname": "GARM",
     "name": "Hatii",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "xmas_fild01",
@@ -415,6 +463,8 @@
     "id": 1492,
     "dbname": "INCANTATION_SAMURAI",
     "name": "Samurai Specter",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "ama_dun03",
@@ -432,6 +482,8 @@
     "id": 1623,
     "dbname": "RSX_0806",
     "name": "RSX-0806",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "ein_dun02",
@@ -449,6 +501,8 @@
     "id": 1418,
     "dbname": "DARK_SNAKE_LORD",
     "name": "Evil Snake Lord",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "gon_dun03",
@@ -466,6 +520,8 @@
     "id": 1312,
     "dbname": "TURTLE_GENERAL",
     "name": "Turtle General",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "tur_dun04",
@@ -483,6 +539,8 @@
     "id": 1583,
     "dbname": "TAO_GUNKA",
     "name": "Tao Gunka",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "beach_dun",
@@ -500,6 +558,8 @@
     "id": 1785,
     "dbname": "ATROCE",
     "name": "Atroce",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "ra_fild03",
@@ -529,6 +589,8 @@
     "id": 2022,
     "dbname": "S_NYDHOG",
     "name": "Nidhoggr's Shadow",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "2@nyd",
@@ -546,6 +608,8 @@
     "id": 1734,
     "dbname": "KIEL_",
     "name": "Kiel D-01",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "kh_dun02",
@@ -563,6 +627,8 @@
     "id": 1685,
     "dbname": "APOCALIPS_H",
     "name": "Vesper",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "jupe_core",
@@ -580,6 +646,8 @@
     "id": 1719,
     "dbname": "DETALE",
     "name": "Detardeurus",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "abyss_03",
@@ -597,6 +665,8 @@
     "id": 1871,
     "dbname": "FALLINGBISHOP",
     "name": "Falling Bishop",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "abbey02",
@@ -614,6 +684,8 @@
     "id": 1768,
     "dbname": "GLOOMUNDERNIGHT",
     "name": "Gloom Under Night",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "ra_san05",
@@ -631,6 +703,8 @@
     "id": 2087,
     "dbname": "QUEEN_SCARABA",
     "name": "Queen Scaraba",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "dic_dun02",
@@ -648,6 +722,8 @@
     "id": 1658,
     "dbname": "B_YGNIZEM",
     "name": "Egnigem Cenia",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "lhz_dun02",
@@ -665,6 +741,8 @@
     "id": 1751,
     "dbname": "RANDGRIS",
     "name": "Valkyrie Randgris",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "odin_tem03",
@@ -682,6 +760,8 @@
     "id": 1832,
     "dbname": "IFRIT",
     "name": "Ifrit",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "thor_v03",
@@ -699,6 +779,8 @@
     "id": 1917,
     "dbname": "MOROCC_",
     "name": "Wounded Morocc",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "moc_fild22",
@@ -713,9 +795,11 @@
     }
   },
   {
-    "id": 1582,
+    "id": 1767,
     "dbname": "DEVILING",
     "name": "Deviling",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
         "mapname": "pay_fild04",
@@ -734,24 +818,26 @@
     }
   },
   {
-    "id": 1,
-    "dbname": "TEST",
-    "name": "test",
+    "id": 1765,
+    "dbname": "G_RANDGRIS",
+    "name": "Valkyrie",
+    "activeMaps": [],
+    "disabled": false,
     "spawn": [
       {
-        "mapname": "pay_fild04",
-        "respawnTime": 60000
+        "mapname": "odin_tem02",
+        "respawnTime": 5400000
       },
       {
-        "mapname": "yuno_fild03",
-        "respawnTime": 60000
+        "mapname": "odin_tem03",
+        "respawnTime": 1800000
       }
     ],
     "stats": {
-      "level": 31,
-      "health": 64500,
-      "baseExperience": 211,
-      "jobExperience": 412
+      "level": 99,
+      "health": 1567200,
+      "baseExperience": 10000,
+      "jobExperience": 10000
     }
   }
 ]

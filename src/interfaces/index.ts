@@ -19,4 +19,8 @@ export interface Mvp {
   deathTime?: string;
   deathMap?: string;
   deathPosition?: IMapMark;
+  [key: string]: any;
+  timezone?: string;
+  activeMaps: Array<string>;
+  disabled: boolean;
 }

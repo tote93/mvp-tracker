@@ -1,12 +1,12 @@
-import styled, { css } from 'styled-components';
-import { mobile } from '../../utils/media';
+import styled, { css } from "styled-components";
+import { mobile } from "../../utils/media";
 
 interface MapImgProps {
-  clickable: boolean;
+  /*   clickable: boolean; */
 }
 
 export const MapImg = styled.img<MapImgProps>`
   width: 25rem;
   height: 25rem;
-  cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
+  cursor: pointer;
 `;

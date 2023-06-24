@@ -5,14 +5,12 @@ import mvpsData from "../../data/data.json";
 export interface MvpState {
   activeMvps: Array<Mvp>;
   allMvps: Array<Mvp>;
-  timeZone: string;
   editingMvp: Mvp;
 }
 
 const initialState: MvpState = {
   activeMvps: [],
   allMvps: mvpsData,
-  timeZone: "local",
   editingMvp: mvpsData[0],
 };
 
@@ -21,14 +19,26 @@ export const mvpSlice = createSlice({
   initialState,
   reducers: {
     addKilledMvp: (state, action: PayloadAction<Mvp>) => {
-      state.allMvps = state.allMvps.filter((mvp) => mvp.id !== action.payload.id);
       state.activeMvps.push(action.payload);
       saveLocalActiveMvps(state);
       addLocalKilledMvpCount(action.payload);
+      if (action.payload.spawn.length === 1) {
+        state.allMvps = state.allMvps.filter((mvp) => mvp.id !== action.payload.id);
+      } else {
+        // find the mvp from allMvps and replace it by the action.payload one
+        const index = state.allMvps.findIndex((mvp) => mvp.id === action.payload.id);
+        state.allMvps[index] = action.payload;
+      }
+      if (action.payload.spawn.length === action.payload.activeMaps.length) {
+        state.allMvps = state.allMvps.filter((mvp) => mvp.id !== action.payload.id);
+      }
     },
     removeActiveMvp: (state, action: PayloadAction<Mvp>) => {
-      state.activeMvps = state.activeMvps.filter((mvp) => mvp.id !== action.payload.id);
+      if (action.payload.spawn.length === 1) {
+        state.activeMvps = state.activeMvps.filter((mvp) => mvp.id !== action.payload.id);
+      }
       state.allMvps.push(action.payload);
+      removeActiveFromLocalStorage(action.payload);
     },
     setActiveMvps: (state, action: PayloadAction<Array<Mvp>>) => {
       state.activeMvps = action.payload;
@@ -36,16 +46,13 @@ export const mvpSlice = createSlice({
     setAllMvps: (state, action: PayloadAction<Array<Mvp>>) => {
       state.allMvps = action.payload;
     },
-    setTimeZone: (state, action: PayloadAction<string>) => {
-      state.timeZone = action.payload;
-    },
     setEditingMvp: (state, action: PayloadAction<Mvp>) => {
       state.editingMvp = action.payload;
     },
   },
 });
 
-export const { setEditingMvp, addKilledMvp, removeActiveMvp, setActiveMvps, setAllMvps, setTimeZone } = mvpSlice.actions;
+export const { setEditingMvp, addKilledMvp, removeActiveMvp, setActiveMvps, setAllMvps } = mvpSlice.actions;
 const saveLocalActiveMvps = (state: MvpState) => {
   const activeMvps: any = [];
   state.activeMvps.forEach((mvp) => {
@@ -57,13 +64,13 @@ const saveLocalActiveMvps = (state: MvpState) => {
   });
   localStorage.setItem("activeMvps", JSON.stringify(activeMvps));
 };
-const addLocalKilledMvpCount = (payload: Mvp) => {
-  const mvp_count: any = localStorage.getItem("mvp_count");
+export const addLocalKilledMvpCount = (payload: Mvp) => {
+  /*   const mvp_count: any = localStorage.getItem("mvp_count");
   if (mvp_count) {
     const mvpCount = JSON.parse(mvp_count);
     mvpCount.find((i: any) => i.id === payload.id).killed += 1;
     localStorage.setItem("mvp_count", JSON.stringify(mvpCount));
-  }
+  } */
 };
 export const getLocalActiveMvps = () => {
   const activeMvps: any = localStorage.getItem("activeMvps");
@@ -81,9 +88,16 @@ export const getLocalActiveMvps = () => {
   }
   return [];
 };
+const removeActiveFromLocalStorage = (payload: Mvp) => {
+  const activeMvps: any = localStorage.getItem("activeMvps");
+  if (activeMvps) {
+    const MVPS = JSON.parse(activeMvps);
+    const updatedMvps = MVPS.filter((mvp: any) => mvp.id !== payload.id && mvp.deathMap !== payload.deathMap);
+    localStorage.setItem("activeMvps", JSON.stringify(updatedMvps));
+  }
+};
 
 export const getAllMvps = (state: RootState) => state.mvpContext.allMvps;
 export const getActiveMvps = (state: RootState) => state.mvpContext.activeMvps;
-export const getTimezone = (state: RootState) => state.mvpContext.timeZone;
 export const getKilledMvp = (state: RootState) => state.mvpContext.editingMvp;
 export default mvpSlice.reducer;

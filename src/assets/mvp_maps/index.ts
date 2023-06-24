@@ -24,6 +24,8 @@ import icongef_dun01 from "./gef_dun01.png";
 import icongef_dun01_raw from "./gef_dun01_raw.png";
 import icongef_dun02 from "./gef_dun02.png";
 import icongef_dun02_raw from "./gef_dun02_raw.png";
+import icongef_fild14 from "./gef_fild14.png";
+import icongef_fild02 from "./gef_fild02.png";
 import icongef_fild03 from "./gef_fild03.png";
 import icongef_fild03_raw from "./gef_fild03_raw.png";
 import icongef_fild10 from "./gef_fild10.png";
@@ -91,7 +93,10 @@ import iconmosk_dun03_raw from "./mosk_dun03_raw.png";
 import iconniflheim from "./niflheim.png";
 import iconniflheim_raw from "./niflheim_raw.png";
 import iconodin_tem03 from "./odin_tem03.png";
+import iconodin_tem02 from "./odin_tem02.png";
 import iconodin_tem03_raw from "./odin_tem03_raw.png";
+import iconpay_fild04 from "./pay_fild04.png";
+import iconyuno_fild03 from "./yuno_fild03.png";
 import iconpay_dun04 from "./pay_dun04.png";
 import iconpay_dun04_raw from "./pay_dun04_raw.png";
 import iconpay_fild10 from "./pay_fild10.png";
@@ -160,6 +165,8 @@ export const mvpMaps: mvpMapsInterface = {
   gef_dun01_raw: icongef_dun01_raw,
   gef_dun02: icongef_dun02,
   gef_dun02_raw: icongef_dun02_raw,
+  gef_fild14: icongef_fild14,
+  gef_fild02: icongef_fild02,
   gef_fild03: icongef_fild03,
   gef_fild03_raw: icongef_fild03_raw,
   gef_fild10: icongef_fild10,
@@ -226,8 +233,11 @@ export const mvpMaps: mvpMapsInterface = {
   mosk_dun03_raw: iconmosk_dun03_raw,
   niflheim: iconniflheim,
   niflheim_raw: iconniflheim_raw,
+  odin_tem02: iconodin_tem02,
   odin_tem03: iconodin_tem03,
   odin_tem03_raw: iconodin_tem03_raw,
+  pay_fild04: iconpay_fild04,
+  yuno_fild03: iconyuno_fild03,
   pay_dun04: iconpay_dun04,
   pay_dun04_raw: iconpay_dun04_raw,
   pay_fild10: iconpay_fild10,

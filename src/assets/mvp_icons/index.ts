@@ -39,6 +39,7 @@ import icon1719 from './1719.png';
 import icon1731 from './1731.png';
 import icon1734 from './1734.png';
 import icon1751 from './1751.png';
+import icon1765 from "./1765.png";
 import icon1766 from './1766.png';
 import icon1767 from './1767.png';
 import icon1768 from './1768.png';
@@ -207,6 +208,7 @@ export const mvpIcons: mvpIconItem = {
   "1731": icon1731,
   "1734": icon1734,
   "1751": icon1751,
+  "1765": icon1765,
   "1766": icon1766,
   "1767": icon1767,
   "1768": icon1768,
