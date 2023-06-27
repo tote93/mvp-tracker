@@ -818,6 +818,52 @@
     }
   },
   {
+    "id": 1120,
+    "dbname": "GHOSTRING",
+    "name": "Ghostring",
+    "activeMaps": [],
+    "disabled": false,
+    "spawn": [
+      {
+        "mapname": "pay_fild04",
+        "respawnTime": 3600000
+      },
+      {
+        "mapname": "prt_maze03",
+        "respawnTime": 6780000
+      },
+      {
+        "mapname": "treasure02",
+        "respawnTime": 1980000
+      }
+    ],
+    "stats": {
+      "level": 18,
+      "health": 73300,
+      "baseExperience": 101,
+      "jobExperience": 108
+    }
+  },
+  {
+    "id": 1289,
+    "dbname": "MAYA_PUPLE",
+    "name": "Maya Purple",
+    "activeMaps": [],
+    "disabled": false,
+    "spawn": [
+      {
+        "mapname": "anthell01",
+        "respawnTime": 7200000
+      }
+    ],
+    "stats": {
+      "level": 81,
+      "health": 55479,
+      "baseExperience": 10496,
+      "jobExperience": 3893
+    }
+  },
+  {
     "id": 1765,
     "dbname": "G_RANDGRIS",
     "name": "Valkyrie",

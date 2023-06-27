@@ -49,10 +49,28 @@ export const mvpSlice = createSlice({
     setEditingMvp: (state, action: PayloadAction<Mvp>) => {
       state.editingMvp = action.payload;
     },
+    editMvp: (state, action: PayloadAction<Mvp>) => {
+      const index = state.allMvps.findIndex((mvp) => mvp.id === action.payload.id && mvp.deathMap === action.payload.deathMap);
+      state.allMvps[index] = action.payload;
+      editLocalMvp(action.payload);
+    },
   },
 });
 
-export const { setEditingMvp, addKilledMvp, removeActiveMvp, setActiveMvps, setAllMvps } = mvpSlice.actions;
+export const { setEditingMvp, addKilledMvp, removeActiveMvp, setActiveMvps, setAllMvps, editMvp } = mvpSlice.actions;
+const editLocalMvp = (payload: Mvp) => {
+  const activeMvps: any = localStorage.getItem("activeMvps");
+  if (activeMvps) {
+    const MVPS = JSON.parse(activeMvps);
+    const updatedMvps = MVPS.map((mvp: any) => {
+      if (mvp.id === payload.id && mvp.deathMap === payload.deathMap) {
+        return payload;
+      }
+      return mvp;
+    });
+    localStorage.setItem("activeMvps", JSON.stringify(updatedMvps));
+  }
+};
 const saveLocalActiveMvps = (state: MvpState) => {
   const activeMvps: any = [];
   state.activeMvps.forEach((mvp) => {
@@ -90,9 +108,10 @@ export const getLocalActiveMvps = () => {
 };
 const removeActiveFromLocalStorage = (payload: Mvp) => {
   const activeMvps: any = localStorage.getItem("activeMvps");
+
   if (activeMvps) {
     const MVPS = JSON.parse(activeMvps);
-    const updatedMvps = MVPS.filter((mvp: any) => mvp.id !== payload.id && mvp.deathMap !== payload.deathMap);
+    const updatedMvps = MVPS.filter((mvp: any) => mvp.id !== payload.id || (mvp.id === payload.id && mvp.deathMap !== payload.deathMap));
     localStorage.setItem("activeMvps", JSON.stringify(updatedMvps));
   }
 };

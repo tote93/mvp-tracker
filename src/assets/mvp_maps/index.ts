@@ -1,5 +1,6 @@
 import iconabbey02 from "./abbey02.png";
 import iconabbey02_raw from "./abbey02_raw.png";
+import iconanthell01 from "./anthell01.png";
 import iconabyss_03 from "./abyss_03.png";
 import iconabyss_03_raw from "./abyss_03_raw.png";
 import iconama_dun03 from "./ama_dun03.png";
@@ -141,6 +142,7 @@ interface mvpMapsInterface {
 export const mvpMaps: mvpMapsInterface = {
   abbey02: iconabbey02,
   abbey02_raw: iconabbey02_raw,
+  anthell01: iconanthell01,
   abyss_03: iconabyss_03,
   abyss_03_raw: iconabyss_03_raw,
   ama_dun03: iconama_dun03,

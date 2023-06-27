@@ -20,8 +20,8 @@ import {
     SumMvpBtn
 } from './styles';
 import { useDispatch } from 'react-redux';
-import { addLocalKilledMvpCount, removeActiveMvp, setEditingMvp } from '../../features/mvp/mvpSlice';
-import { setModal } from '../../features/settings/settingsSlice';
+import { addLocalKilledMvpCount, editMvp, setEditingMvp } from '../../features/mvp/mvpSlice';
+import { setEditMode, setModal } from '../../features/settings/settingsSlice';
 import { MvpCardCountdown } from '../MvpCardCountdown';
 import { getMvpRespawnTime, respawnAt } from '../../utils';
 
@@ -29,15 +29,17 @@ interface MvpCardProps {
     mvp: Mvp;
     isActive?: boolean;
     killed: number;
-    /*     killed: number;
-        sumMvpItem: Function; */
+    handleDeleteMap: Function;
 }
 export const MvpCard = React.memo(
-    ({ mvp, isActive = false, killed }: MvpCardProps) => {
+    ({ mvp, isActive = false, killed, handleDeleteMap }: MvpCardProps) => {
         const nextRespawn = useMemo(
             () => moment(mvp.deathTime).add(getMvpRespawnTime(mvp), 'ms'),
             [mvp]
         );
+        const [newTime] = useState<Date | null>(moment().subtract(8, 'hours').toDate());
+        const [isServerTime] = useState(mvp.timeZone === "server" ? true : false);
+
         const respawnTime = useMemo(() => respawnAt(nextRespawn), [nextRespawn]);
         const dispatch = useDispatch();
 
@@ -62,17 +64,23 @@ export const MvpCard = React.memo(
             setIsMapModalOpen()
         }
         const handleRemoveActiveMvp = () => {
-            console.log(mvp, "---");
-            mvp.activeMaps = [...mvp.activeMaps.filter(map => map !== mvp.deathMap)]
-            dispatch(removeActiveMvp(mvp))
+            handleDeleteMap(mvp)
         }
 
         const setIsMapModalOpen = () => {
             dispatch(setEditingMvp(mvp))
             dispatch(setModal())
         }
-        const test = () => {
-            console.log(mvp);
+        const editMvpAction = () => {
+            dispatch(setEditingMvp(mvp))
+            dispatch(setEditMode(true))
+            dispatch(setModal())
+        }
+        const resetTimer = () => {
+            const serverTime = moment(newTime).add(8, 'hours').toDate();
+            const updatedTime = isServerTime ? serverTime : moment().toDate();
+            mvp = { ...mvp, timezone: "local", deathTime: moment(updatedTime || new Date()).format('YYYY-MM-DD HH:mm:ss') };
+            dispatch(editMvp(mvp))
         }
         return (
             <>
@@ -99,19 +107,12 @@ export const MvpCard = React.memo(
                             </MapName>
 
                             <Controls>
-                                <Control style={{ backgroundColor: "#00a8ff" }} onClick={() => setIsMapModalOpen()} title='Show map'>
-                                    <Map />
-                                </Control>
-                                <Control
-                                    style={{ backgroundColor: "#f89200" }}
-                                    /*  onClick={() => openAndEditModal(mvp)} */
-                                    title='Edit this mvp'
-                                >
+                                <Control style={{ backgroundColor: "#00a8ff" }} onClick={editMvpAction} title='Edit this mvp'>
                                     <Edit2 />
                                 </Control>
                                 <Control
                                     style={{ backgroundColor: "#3F51B5" }}
-                                    onClick={test} title='Reset timer'>
+                                    onClick={resetTimer} title='Reset timer'>
                                     <RefreshCcw />
                                 </Control>
                                 <Control

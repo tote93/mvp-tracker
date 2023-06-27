@@ -8,7 +8,7 @@ export function Header() {
     <Container>
       <LogoContainer>
         <Logo src={mvpImg} alt='mvp' />
-        <Title>Ragnarok MVP Timer</Title>
+        <Title>Miracle-RO MVP Timer</Title>
       </LogoContainer>
       <HeaderTimer />
     </Container>

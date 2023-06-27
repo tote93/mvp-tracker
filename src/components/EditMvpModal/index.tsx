@@ -27,16 +27,17 @@ import {
 } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { addKilledMvp, getKilledMvp } from '../../features/mvp/mvpSlice';
-import { setModal } from '../../features/settings/settingsSlice';
+import { getEditMode, setEditMode, setModal } from '../../features/settings/settingsSlice';
 
 export function EditMvpModal() {
   useScrollBlock(true);
 
   const mvp = useSelector(getKilledMvp);
+  const editMode = useSelector(getEditMode);
   const dispatch = useDispatch();
   const [newTime, setNewTime] = useState<Date | null>(moment().subtract(8, 'hours').toDate());
   const [isServerTime, setIsServerTime] = useState(mvp.timeZone === "server" ? true : false);
-  console.log(mvp);
+
   useEffect(() => {
     if (isServerTime) {
       const serverTime = moment().subtract(8, 'hours').toDate();
@@ -58,6 +59,7 @@ export function EditMvpModal() {
   );
 
   const toggleEditModal = () => {
+    dispatch(setEditMode(false))
     dispatch(setModal())
   }
 
@@ -76,6 +78,7 @@ export function EditMvpModal() {
     };
     dispatch(addKilledMvp(updatedMvp))
     dispatch(setModal())
+
   }, [selectedMap, mvp, markCoordinates, newTime, toggleEditModal]);
 
   useEffect(() => {
@@ -120,7 +123,7 @@ export function EditMvpModal() {
 
         <Time>At {newTime && moment(newTime).format('HH:mm')}</Time>
 
-        {canChangeMap && hasMoreThanOneMap && (
+        {canChangeMap && hasMoreThanOneMap && !editMode && (
           <>
             <Question>Please select the map</Question>
             <SelectMap
@@ -158,7 +161,7 @@ export function EditMvpModal() {
         )}
 
         <ConfirmButton onClick={handleConfirm} disabled={!selectedMap}>
-          Confirm
+          {!editMode ? "Confirm" : "Edit"}
         </ConfirmButton>
       </Modal>
     </ModalBase>
