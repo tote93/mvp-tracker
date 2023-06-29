@@ -61,7 +61,7 @@ export const MvpCard = React.memo(
         const handleKilledOther = () => {
             mvp = { ...mvp, timezone: "server" }
             dispatch(setEditingMvp(mvp))
-            setIsMapModalOpen()
+            dispatch(setModal())
         }
         const handleRemoveActiveMvp = () => {
             handleDeleteMap(mvp)

@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
-import { Search, ArrowUp, ArrowDown } from '@styled-icons/feather';
-import { phone } from '../../utils/media';
+import styled, { css } from "styled-components";
+import { Search, ArrowUp, ArrowDown } from "@styled-icons/feather";
+import { phone } from "../../utils/media";
 
 export const Container = styled.div`
   display: flex;
@@ -71,4 +71,17 @@ export const DownArrow = styled(ArrowDown)`
   height: 24px;
   color: ${({ theme }) => theme.colors.filterSearch.text};
   stroke-width: 1.5px;
+`;
+
+export const ClearButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: #ff4944;
+  color: ${({ theme }) => theme.colors.filterSearch.text};
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
 `;

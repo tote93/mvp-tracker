@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { SortSelect } from '../SortSelect';
 
 import {
@@ -8,8 +9,10 @@ import {
   SortContainer,
   Reverse,
   UpArrow,
+  ClearButton,
   DownArrow,
 } from './styles';
+import { removeAllSavedMvps } from '../../features/mvp/mvpSlice';
 
 interface FilterProps {
   onChangeQuery: (value: string) => void;
@@ -24,6 +27,11 @@ export function MvpsContainerFilter({
   isReverse,
   onReverse,
 }: FilterProps) {
+  const dispatch = useDispatch()
+  const clearMvps = () => {
+    dispatch(removeAllSavedMvps())
+  }
+
   return (
     <Container>
       <SearchContainer>
@@ -37,6 +45,7 @@ export function MvpsContainerFilter({
           {isReverse ? <UpArrow /> : <DownArrow />}
         </Reverse>
       </SortContainer>
+      <ClearButton onClick={clearMvps} >Clear Mvps</ClearButton>
     </Container>
   );
 }

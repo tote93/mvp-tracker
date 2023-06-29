@@ -114,6 +114,7 @@ export function EditMvpModal() {
             showTimeInput
             placeholderText='Select mvp death time'
             withPortal
+            
             minDate={moment().subtract(4, 'days').toDate()}
             maxDate={moment().add(1, 'days').toDate()}
           />
