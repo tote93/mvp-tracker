@@ -562,6 +562,10 @@
     "disabled": false,
     "spawn": [
       {
+        "mapname": "ra_fild02",
+        "respawnTime": 14400000
+      },
+      {
         "mapname": "ra_fild03",
         "respawnTime": 10800000
       },

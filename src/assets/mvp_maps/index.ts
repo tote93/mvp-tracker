@@ -106,6 +106,7 @@ import iconprt_maze03 from "./prt_maze03.png";
 import iconprt_maze03_raw from "./prt_maze03_raw.png";
 import iconprt_sewb4 from "./prt_sewb4.png";
 import iconprt_sewb4_raw from "./prt_sewb4_raw.png";
+import iconra_fild02 from "./ra_fild02.png";
 import iconra_fild03 from "./ra_fild03.png";
 import iconra_fild03_raw from "./ra_fild03_raw.png";
 import iconra_fild04 from "./ra_fild04.png";
@@ -248,6 +249,7 @@ export const mvpMaps: mvpMapsInterface = {
   prt_maze03_raw: iconprt_maze03_raw,
   prt_sewb4: iconprt_sewb4,
   prt_sewb4_raw: iconprt_sewb4_raw,
+  ra_fild02: iconra_fild02,
   ra_fild03: iconra_fild03,
   ra_fild03_raw: iconra_fild03_raw,
   ra_fild04: iconra_fild04,
