@@ -681,6 +681,25 @@
     }
   },
   {
+    "id": 1874,
+    "dbname": "BEELZEBUB_",
+    "name": "Beelzebub",
+    "activeMaps": [],
+    "disabled": false,
+    "spawn": [
+      {
+        "mapname": "abbey03",
+        "respawnTime": 43200000
+      }
+    ],
+    "stats": {
+      "level": 98,
+      "health": 6666666,
+      "baseExperience": 6666666,
+      "jobExperience": 6666666
+    }
+  },
+  {
     "id": 1768,
     "dbname": "GLOOMUNDERNIGHT",
     "name": "Gloom Under Night",
