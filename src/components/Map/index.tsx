@@ -31,7 +31,7 @@ export function Map({
       const { offsetX, offsetY } = e.nativeEvent;
       const newCoords = {
         x: offsetX,
-        y: offsetY - 50,
+        y: offsetY - 100,
       };
       setMarkCoordinates(newCoords);
       onChange(newCoords);

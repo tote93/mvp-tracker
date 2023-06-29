@@ -67,8 +67,7 @@ export function EditMvpModal() {
     if (!selectedMap) return;
 
     const serverTime = moment(newTime).add(8, 'hours').toDate();
-    const updatedTime = isServerTime ? serverTime : moment().toDate();
-
+    const updatedTime = isServerTime ? serverTime : moment(newTime).toDate();
     const updatedMvp: Mvp = {
       ...mvp,
       deathMap: selectedMap,
@@ -78,7 +77,6 @@ export function EditMvpModal() {
     };
     dispatch(addKilledMvp(updatedMvp))
     dispatch(setModal())
-
   }, [selectedMap, mvp, markCoordinates, newTime, toggleEditModal]);
 
   useEffect(() => {
