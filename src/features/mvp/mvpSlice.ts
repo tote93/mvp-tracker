@@ -83,12 +83,12 @@ const saveLocalActiveMvps = (state: MvpState) => {
   localStorage.setItem("activeMvps", JSON.stringify(activeMvps));
 };
 export const addLocalKilledMvpCount = (payload: Mvp) => {
-  /*   const mvp_count: any = localStorage.getItem("mvp_count");
+  const mvp_count: any = localStorage.getItem("mvp_count");
   if (mvp_count) {
     const mvpCount = JSON.parse(mvp_count);
     mvpCount.find((i: any) => i.id === payload.id).killed += 1;
     localStorage.setItem("mvp_count", JSON.stringify(mvpCount));
-  } */
+  }
 };
 export const getLocalActiveMvps = () => {
   const activeMvps: any = localStorage.getItem("activeMvps");
