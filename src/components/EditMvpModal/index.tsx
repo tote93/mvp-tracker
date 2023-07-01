@@ -84,7 +84,7 @@ export function EditMvpModal() {
   }, [hasMoreThanOneMap, mvp.spawn]);
 
   useKey('Escape', toggleEditModal);
-
+  console.log(mvp);
   return (
     <ModalBase>
       <Modal>

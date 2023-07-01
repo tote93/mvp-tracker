@@ -24,3 +24,8 @@ export interface Mvp {
   activeMaps: Array<string>;
   disabled: boolean;
 }
+
+export interface KilledMvp {
+  id: number;
+  killed: number;
+}

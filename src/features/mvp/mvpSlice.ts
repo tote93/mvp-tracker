@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { Mvp } from "../../interfaces";
+import { KilledMvp, Mvp } from "../../interfaces";
 import mvpsData from "../../data/data.json";
 export interface MvpState {
   activeMvps: Array<Mvp>;
@@ -27,7 +27,8 @@ export const mvpSlice = createSlice({
       } else {
         // find the mvp from allMvps and replace it by the action.payload one
         const index = state.allMvps.findIndex((mvp) => mvp.id === action.payload.id);
-        state.allMvps[index] = action.payload;
+        state.allMvps[index] = { ...state.allMvps[index], activeMaps: [...new Set([...state.allMvps[index].activeMaps, ...action.payload.activeMaps])] };
+        console.log(state.allMvps[index]);
       }
       if (action.payload.spawn.length === action.payload.activeMaps.length) {
         state.allMvps = state.allMvps.filter((mvp) => mvp.id !== action.payload.id);
@@ -36,8 +37,29 @@ export const mvpSlice = createSlice({
     removeActiveMvp: (state, action: PayloadAction<Mvp>) => {
       if (action.payload.spawn.length === 1) {
         state.activeMvps = state.activeMvps.filter((mvp) => mvp.id !== action.payload.id);
+        state.allMvps.push(action.payload);
+      } else {
+        const anyOtherSpawn = state.activeMvps.find((mvp) => mvp.id === action.payload.id && mvp.deathMap !== action.payload.deathMap);
+        const isAnySpawnAvailable = state.allMvps.find((mvp) => mvp.id === action.payload.id);
+        if (anyOtherSpawn) {
+          state.activeMvps = state.activeMvps.filter((mvp) => mvp.id !== action.payload.id || (mvp.id === action.payload.id && mvp.deathMap !== action.payload.deathMap));
+        }
+        if (isAnySpawnAvailable) {
+          isAnySpawnAvailable.activeMaps = isAnySpawnAvailable.activeMaps.filter((map) => map !== action.payload.deathMap);
+
+          const index = state.allMvps.findIndex((mvp) => mvp.id === action.payload.id);
+          state.allMvps[index] = { ...isAnySpawnAvailable, activeMaps: state.allMvps[index].activeMaps.filter((map: any) => map !== action.payload.deathMap) };
+        } else {
+          const copyItem = { ...action.payload };
+          copyItem.activeMaps = copyItem.activeMaps.filter((map) => map !== action.payload.deathMap);
+          delete copyItem.deathTime;
+          delete copyItem.deathMap;
+          delete copyItem.deathPosition;
+          state.allMvps.push(copyItem);
+          state.activeMvps = state.activeMvps.filter((mvp) => mvp.id !== action.payload.id);
+        }
       }
-      state.allMvps.push(action.payload);
+
       removeActiveFromLocalStorage(action.payload);
     },
     setActiveMvps: (state, action: PayloadAction<Array<Mvp>>) => {
@@ -91,7 +113,7 @@ export const addLocalKilledMvpCount = (payload: Mvp) => {
   const mvp_count: any = localStorage.getItem("mvp_count");
   if (mvp_count) {
     const mvpCount = JSON.parse(mvp_count);
-    if (payload.timezone === "local") mvpCount.find((i: any) => i.id === payload.id).killed += 1;
+    if (payload.timezone === "local") mvpCount.find((i: KilledMvp) => i.id === payload.id).killed += 1;
     localStorage.setItem("mvp_count", JSON.stringify(mvpCount));
   }
 };

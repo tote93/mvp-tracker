@@ -52,14 +52,21 @@ function App() {
         });
       }
     });
-    let filtered = allMvps.map((mvp: Mvp) => {
+    let filtered: any[] = [];
+    allMvps.map((mvp: Mvp) => {
+      let item = { ...mvp };
       const foundIndex = groupedArray.findIndex((item: any) => item.id === mvp.id);
       if (foundIndex !== -1) {
-        return groupedArray[foundIndex];
+        const copyItem = { ...groupedArray[foundIndex] };
+        delete copyItem.deathMap;
+        delete copyItem.deathPosition
+        delete copyItem.deathTime
+        item = copyItem;
       }
-      return mvp;
+      filtered.push(item);
     });
-    filtered = allMvps.filter((mvp: Mvp) => activeIds.indexOf(mvp.id) === -1 && mvp.activeMaps.length !== mvp.spawn.length);
+
+    filtered = filtered.filter((mvp: Mvp) => activeIds.indexOf(mvp.id) === -1 || mvp.activeMaps.length !== mvp.spawn.length || mvp.activeMaps.length !== mvp.spawn.length);
 
     dispatch(setAllMvps(filtered));
     dispatch(setActiveMvps(activeLocalMvps));
