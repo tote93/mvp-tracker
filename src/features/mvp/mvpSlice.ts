@@ -34,6 +34,11 @@ export const mvpSlice = createSlice({
         state.allMvps = state.allMvps.filter((mvp) => mvp.id !== action.payload.id);
       }
     },
+    renewActiveMvp: (state, action: PayloadAction<Mvp>) => {
+      const index = state.activeMvps.findIndex((mvp) => mvp.id === action.payload.id && mvp.deathMap === action.payload.deathMap);
+      state.activeMvps[index] = action.payload;
+      saveLocalActiveMvps(state);
+    },
     removeActiveMvp: (state, action: PayloadAction<Mvp>) => {
       if (action.payload.spawn.length === 1) {
         state.activeMvps = state.activeMvps.filter((mvp) => mvp.id !== action.payload.id);
@@ -84,7 +89,7 @@ export const mvpSlice = createSlice({
   },
 });
 
-export const { setEditingMvp, addKilledMvp, removeActiveMvp, setActiveMvps, setAllMvps, editMvp, removeAllSavedMvps } = mvpSlice.actions;
+export const { setEditingMvp, addKilledMvp, renewActiveMvp, removeActiveMvp, setActiveMvps, setAllMvps, editMvp, removeAllSavedMvps } = mvpSlice.actions;
 const editLocalMvp = (payload: Mvp) => {
   const activeMvps: any = localStorage.getItem("activeMvps");
   if (activeMvps) {

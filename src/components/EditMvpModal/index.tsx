@@ -26,7 +26,7 @@ import {
   ConfirmButton,
 } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { addKilledMvp, getKilledMvp } from '../../features/mvp/mvpSlice';
+import { addKilledMvp, getKilledMvp, renewActiveMvp } from '../../features/mvp/mvpSlice';
 import { getEditMode, setEditMode, setModal } from '../../features/settings/settingsSlice';
 
 export function EditMvpModal() {
@@ -78,7 +78,16 @@ export function EditMvpModal() {
     dispatch(addKilledMvp(updatedMvp))
     dispatch(setModal())
   }, [selectedMap, mvp, markCoordinates, newTime, toggleEditModal]);
-
+  const handleEditMvp = () => {
+    const serverTime = moment(newTime).add(8, 'hours').toDate();
+    const updatedTime = isServerTime ? serverTime : moment(newTime).toDate();
+    const updatedMvp: Mvp = {
+      ...mvp,
+      deathTime: moment(updatedTime || new Date()).format('YYYY-MM-DD HH:mm:ss')
+    };
+    dispatch(renewActiveMvp(updatedMvp))
+    dispatch(setModal())
+  }
   useEffect(() => {
     if (!hasMoreThanOneMap) setSelectedMap(mvp.spawn[0].mapname);
   }, [hasMoreThanOneMap, mvp.spawn]);
@@ -114,7 +123,7 @@ export function EditMvpModal() {
             showTimeInput
             placeholderText='Select mvp death time'
             withPortal
-            
+
             minDate={moment().subtract(4, 'days').toDate()}
             maxDate={moment().add(1, 'days').toDate()}
           />
@@ -159,7 +168,7 @@ export function EditMvpModal() {
           </>
         )}
 
-        <ConfirmButton onClick={handleConfirm} disabled={!selectedMap}>
+        <ConfirmButton onClick={editMode ? handleEditMvp : handleConfirm} disabled={!selectedMap}>
           {!editMode ? "Confirm" : "Edit"}
         </ConfirmButton>
       </Modal>
